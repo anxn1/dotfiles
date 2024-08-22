@@ -1,45 +1,107 @@
-# i3status configuration file.
-# see "man i3status" for documentation.
+# Set mod key to Super (Windows key)
+set $mod Mod4
 
-# It is important that this file is edited as UTF-8.
-# The following line should contain a sharp s:
-# ß
-# If the above line is not correctly displayed, fix your editor first!
+# Remove window borders
+new_float pixel 2
 
-general {
-        colors = false
-        interval = 10
-	separator = "  "
-}
-order += "wireless _first_"
-order += "volume master"
-order += "disk /"
-order += "memory"
-order += "tztime local"
+# Set the border style and size
+for_window [class=".*"] border pixel 2
+
+# Gaps
+#gaps inner 10
+#gaps outer 10
+# Font and colors
+font pango:Terminus 14
+client.focused          #ffffff #ffffff #ffffff #ffffff #ffffff
+client.unfocused        #000000 #000000 #000000 #000000 #000000
+#client.focused        #000000 #000000 #000000 #000000 #000000
+client.focused_inactive #666666 #000000 #ffffff #000000 #ffffff
+client.urgent           #ff0000 #000000 #ffffff #000000 #ffffff
+
+# Workspace names
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+
+# Bindings for switching workspaces
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+# Vim-like keybindings for window management
+# Use h, j, k, l to navigate between windows
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move windows using Vim-like keys
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Resize windows using Vim-like keys
+bindsym $mod+Ctrl+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+j resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+k resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+l resize grow width 10 px or 10 ppt
+
+# Layouts
+bindsym $mod+e layout tabbed
+bindsym $mod+w layout stacked
+bindsym $mod+s layout splitv
+bindsym $mod+d layout splith
+
+bindsym $mod+v split v
+bindsym $mod+b split h
+
+bindsym $mod+Shift+space floating toggle
+floating_modifier Mod4
+tiling_drag modifier
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Screenshot with scrot
+bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H%M%S_screenshot.png
+
+# Launch gmrun
+bindsym $mod+r exec --no-startup-id dmenu_run
+# Reload i3
+bindsym $mod+Shift+r reload
+
+# Exit i3
+bindsym $mod+Shift+e exit
+
+# Close the focused window
+bindsym $mod+q kill
+
+bindsym $mod+Return exec xterm
 
 
-wireless _first_ {
-        format_up = "W:%quality"
-        format_down = "W: down"
-}
+exec --no-startup-id setxkbmap -layout fr
+exec --no-startup-id feh --bg-scale ~/Downloads/pape2.jpg
 
-volume maste {
-	device = "default"
-	format = "V:%volume"
-	format_muted = "V:muted %volume"
-}
-
-
-disk "/" {
-        format = "D:%avail/%total"
-}
-
-memory {
-        format = "M:%used/%available"
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
-}
-
-tztime local {
-        format = "%Y-%m-%d %H:%M"
+bar {
+	status_command i3status
+	workspace_buttons yes
+	position bottom
+	colors {
+		background #000000
+		separator #FFFFFF
+		focused_workspace #000000 #848482 #FFFFFF
+		active_workspace #000000 #848482 #FFFFFF
+		inactive_workspace #000000 #545454 #FFFFFF
+	}
 }
