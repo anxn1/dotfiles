@@ -2,20 +2,22 @@
 set $mod Mod4
 
 # Remove window borders
-new_float pixel 2
+new_float pixel 1
 
 # Set the border style and size
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 1
 
 # Gaps
 #gaps inner 10
 #gaps outer 10
 # Font and colors
 font pango:Terminus 14
-client.focused          #ffffff #ffffff #ffffff #ffffff #ffffff
+#client.focused          #ffffff #ffffff #ffffff #ffffff #ffffff
 client.unfocused        #000000 #000000 #000000 #000000 #000000
-#client.focused        #000000 #000000 #000000 #000000 #000000
-client.focused_inactive #666666 #000000 #ffffff #000000 #ffffff
+client.focused        #000000 #000000 #000000 #000000 #000000
+#client.focused_inactive #666666 #000000 #ffffff #000000 #ffffff
+client.focused_inactive #000000 #000000 #000000 #000000 #000000
+client.focused        #000000 #000000 #000000 #000000 #000000
 client.urgent           #ff0000 #000000 #ffffff #000000 #ffffff
 
 # Workspace names
@@ -96,12 +98,14 @@ exec --no-startup-id feh --bg-scale ~/Downloads/pape2.jpg
 bar {
 	status_command i3status
 	workspace_buttons yes
+	font pango:Terminus 16
 	position bottom
+	tray_output primary
 	colors {
 		background #000000
 		separator #FFFFFF
-		focused_workspace #000000 #848482 #FFFFFF
-		active_workspace #000000 #848482 #FFFFFF
-		inactive_workspace #000000 #545454 #FFFFFF
+		focused_workspace #000000 #3d3d3d #FFFFFF
+		active_workspace #000000 #3d3d3d #FFFFFF
+		inactive_workspace #000000 #000000 #FFFFFF
 	}
 }
