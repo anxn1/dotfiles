@@ -1,0 +1,18 @@
+XTerm*faceName: Source Code Pro
+XTerm*faceSize: 14
+XTerm*cursorUnderLine: true
+XTerm*cursorBlink: true
+*.foreground:   #ffffff
+*.background:   #000000
+*.cursorColor:  #ffffff
+! enable clipboard support
+XTerm*selectToClipboard: true
+XTerm*trimSelection: true
+XTerm*highlightSelection: true
+XTerm*translations: #override \
+    Shift <Key>Insert: insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+XTerm*saveLines: 20000 
+XTerm*dynamicColors: true
+XTerm*fastScroll: false

@@ -21,12 +21,15 @@ client.focused        #000000 #000000 #000000 #000000 #000000
 client.urgent           #ff0000 #000000 #ffffff #000000 #ffffff
 
 # Workspace names
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
+set $ws1 "α"
+set $ws2 "β"
+set $ws3 "γ"
+set $ws4 "δ"
+set $ws5 "ε"
+set $ws6 "ζ"
+set $ws7 "η"
+set $ws8 "θ"
+set $ws9 "ι"
 
 # Bindings for switching workspaces
 bindsym $mod+1 workspace $ws1
@@ -35,15 +38,18 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-# Vim-like keybindings for window management
-# Use h, j, k, l to navigate between windows
-bindsym $mod+h focus left
+bindsym $mod+7 workspace $ws6
+bindsym $mod+8 workspace $ws6
+bindsym $mod+9 workspace $ws6
+bindsym $mod+Shift+1 move container to workspace α
+bindsym $mod+Shift+2 move container to workspace β
+bindsym $mod+Shift+3 move container to workspace γ
+bindsym $mod+Shift+4 move container to workspace δ
+bindsym $mod+Shift+5 move container to workspace ε
+bindsym $mod+Shift+6 move container to workspace ζ
+# Vim-like keybindings for window management       
+# Use h, j, k, l to navigate between windows       
+bindsym $mod+h focus left                          
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
@@ -79,7 +85,7 @@ bindsym $mod+f fullscreen toggle
 bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H%M%S_screenshot.png
 
 # Launch gmrun
-bindsym $mod+r exec --no-startup-id dmenu_run
+bindsym $mod+r exec --no-startup-id dmenu_run  -fn 'MesloLGL Nerd Font-13' -nb '#000000' -nf '#ffffff' -sb '#808080' -sf '#ffffff'   
 # Reload i3
 bindsym $mod+Shift+r reload
 
@@ -93,19 +99,20 @@ bindsym $mod+Return exec xterm
 
 
 exec --no-startup-id setxkbmap -layout fr
-exec --no-startup-id feh --bg-scale ~/Downloads/pape2.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/jd.png
 
 bar {
 	status_command i3status
 	workspace_buttons yes
 	font pango:Terminus 16
 	position bottom
+	mode hide
 	tray_output primary
 	colors {
 		background #000000
-		separator #FFFFFF
-		focused_workspace #000000 #3d3d3d #FFFFFF
-		active_workspace #000000 #3d3d3d #FFFFFF
-		inactive_workspace #000000 #000000 #FFFFFF
+		separator #808080
+		focused_workspace #000000 #000000 #FFFFFF
+		active_workspace #000000 #000000 #FFFFFF
+		inactive_workspace #000000 #000000 #808080
 	}
 }
