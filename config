@@ -1,44 +1,118 @@
-# i3status configuration file.
-# see "man i3status" for documentation.
+# Set mod key to Super (Windows key)
+set $mod Mod4
 
-# It is important that this file is edited as UTF-8.
-# The following line should contain a sharp s:
-# ß
-# If the above line is not correctly displayed, fix your editor first!
+# Remove window borders
+new_float pixel 1
 
-general {
-        colors = false
-        interval = 10
-	separator = "  "
+# Set the border style and size
+for_window [class=".*"] border pixel 1
+
+# Gaps
+#gaps inner 10
+#gaps outer 10
+# Font and colors
+font pango:Terminus 14
+#client.focused          #ffffff #ffffff #ffffff #ffffff #ffffff
+client.unfocused        #000000 #000000 #000000 #000000 #000000
+client.focused        #000000 #000000 #000000 #000000 #000000
+#client.focused_inactive #666666 #000000 #ffffff #000000 #ffffff
+client.focused_inactive #000000 #000000 #000000 #000000 #000000
+client.focused        #000000 #000000 #000000 #000000 #000000
+client.urgent           #ff0000 #000000 #ffffff #000000 #ffffff
+
+# Workspace names
+set $ws1 "α"
+set $ws2 "β"
+set $ws3 "γ"
+set $ws4 "δ"
+set $ws5 "ε"
+set $ws6 "ζ"
+set $ws7 "η"
+set $ws8 "θ"
+set $ws9 "ι"
+
+# Bindings for switching workspaces
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws6
+bindsym $mod+8 workspace $ws6
+bindsym $mod+9 workspace $ws6
+bindsym $mod+Shift+1 move container to workspace α
+bindsym $mod+Shift+2 move container to workspace β
+bindsym $mod+Shift+3 move container to workspace γ
+bindsym $mod+Shift+4 move container to workspace δ
+bindsym $mod+Shift+5 move container to workspace ε
+bindsym $mod+Shift+6 move container to workspace ζ
+# Vim-like keybindings for window management       
+# Use h, j, k, l to navigate between windows       
+bindsym $mod+h focus left                          
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move windows using Vim-like keys
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Resize windows using Vim-like keys
+bindsym $mod+Ctrl+h resize shrink width 10 px or 10 ppt
+bindsym $mod+Ctrl+j resize grow height 10 px or 10 ppt
+bindsym $mod+Ctrl+k resize shrink height 10 px or 10 ppt
+bindsym $mod+Ctrl+l resize grow width 10 px or 10 ppt
+
+# Layouts
+bindsym $mod+e layout tabbed
+bindsym $mod+w layout stacked
+bindsym $mod+s layout splitv
+bindsym $mod+d layout splith
+
+bindsym $mod+v split v
+bindsym $mod+b split h
+
+bindsym $mod+Shift+space floating toggle
+floating_modifier Mod4
+tiling_drag modifier
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Screenshot with scrot
+bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H%M%S_screenshot.png
+
+# Launch gmrun
+bindsym $mod+r exec --no-startup-id dmenu_run  -fn 'MesloLGL Nerd Font-13' -nb '#000000' -nf '#ffffff' -sb '#808080' -sf '#ffffff'   
+# Reload i3
+bindsym $mod+Shift+r reload
+
+# Exit i3
+bindsym $mod+Shift+e exit
+
+# Close the focused window
+bindsym $mod+q kill
+
+bindsym $mod+Return exec xterm
+
+
+exec --no-startup-id setxkbmap -layout fr
+exec --no-startup-id feh --bg-scale ~/Pictures/jd.png
+
+bar {
+	status_command i3status
+	workspace_buttons yes
+	font pango:Terminus 16
+	position bottom
+	mode hide
+	tray_output primary
+	colors {
+		background #000000
+		separator #808080
+		focused_workspace #000000 #000000 #FFFFFF
+		active_workspace #000000 #000000 #FFFFFF
+		inactive_workspace #000000 #000000 #808080
+	}
 }
-order += "wireless _first_"
-order += "volume master"
-order += "memory"
-order += "tztime local"
-order += "time"
-
-
-wireless _first_ {
-        format_up = "WIFI%quality"
-        format_down = "WIFI down"
-}
-
-volume maste {
-	device = "default"
-	format = "V:%volume"
-	format_muted = "V:muted %volume"
-}
-
-memory {
-        format = "MEM %used"
-        threshold_degraded = "1G"
-        format_degraded = "MEMORY < %available"
-}
-
-tztime local {
-        format = "%A,%B %d"
-}
-time {
-	format = "%H:%M"
-}
-
